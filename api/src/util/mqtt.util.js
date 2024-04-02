@@ -88,7 +88,8 @@ module.exports.connect = () => {
   if (!MQTT || !MQTT.HOST) return;
 
   try {
-    CLIENT = mqtt.connect(`mqtt://${MQTT.HOST}`, {
+    CLIENT = mqtt.connect({
+      host: MQTT.HOST,
       reconnectPeriod: 10000,
       username: MQTT.USERNAME || MQTT.USER,
       password: MQTT.PASSWORD || MQTT.PASS,
