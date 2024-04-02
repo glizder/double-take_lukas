@@ -91,14 +91,17 @@ module.exports.connect = () => {
     CLIENT = mqtt.connect({
       host: MQTT.HOST,
       reconnectPeriod: 10000,
+      protocol: MQTT.PROTOCOL,
+      host: MQTT.HOST,
+      port: MQTT.PORT,
       username: MQTT.USERNAME || MQTT.USER,
       password: MQTT.PASSWORD || MQTT.PASS,
       clientId: MQTT.CLIENT_ID || `double-take-${Math.random().toString(16).substr(2, 8)}`,
       key: MQTT.TLS.KEY ? filesystem.readFileSync(MQTT.TLS.KEY) : null,
       cert: MQTT.TLS.CERT ? filesystem.readFileSync(MQTT.TLS.CERT) : null,
-      ca: MQTT.TLS.CA ? filesystem.readFileSync(MQTT.TLS.CA) : null,
       rejectUnauthorized: MQTT.TLS.REJECT_UNAUTHORIZED ? MQTT.TLS.REJECT_UNAUTHORIZED : true,
       protocol: MQTT.PROTOCOL ? MQTT.PROTOCOL : 'mqtt',
+      ca: MQTT.TLS.CA ? filesystem.readFileSync(MQTT.TLS.CA) : null,
       
     });
 
